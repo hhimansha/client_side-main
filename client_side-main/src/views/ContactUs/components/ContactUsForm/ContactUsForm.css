@@ -1,0 +1,122 @@
+.ContactUsForm{
+    background-color: #00629B;
+    height: 90vh;
+    display: flex;
+    color: white;
+}
+
+.ContactUsForm .LeftSection{
+    background: url(./images/contact.png);
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: flex-end;
+    /* border: red 1px solid; */
+}
+
+.ContactUsForm .LeftSection h1{
+    margin-top: 50px;
+    font-size: 4rem;
+    letter-spacing: 5px;
+}
+
+.ContactUsForm .LeftSection p{
+    font-size: .8rem;
+    text-align: right;
+    width: 50%;
+}
+
+.ContactUsForm .LeftSection img{
+    align-self: flex-start;
+    width: 30vw;
+}
+
+.ContactUsForm .RightSection{
+    width: 50%;
+
+}
+
+.ContactUsForm .RightSection form{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.ContactUsForm .RightSection form div{
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.ContactUsForm .RightSection form div label{
+    justify-self: self-start;
+    align-self: center;   
+}
+.ContactUsForm .RightSection form div input{
+    outline: none;
+    border: #fff solid 3px; 
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+.ContactUsForm .RightSection form div textarea{
+    outline: none;
+    border: #fff solid 3px; 
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+.ContactUsForm .RightSection form button{
+    width: 100px;
+    outline: none;
+    border: none;
+    padding: 10px 5px;
+    border-radius: 5px;
+    background-color: #ffa200;
+    color: white;
+    font-weight: 600;
+}
+
+.ContactUsForm .RightSection form div input:focus,
+.ContactUsForm .RightSection form div textarea:focus{
+    border: #ffa200a4 solid 3px; 
+}
+
+
+@media (max-width:1000px) {
+    .ContactUsForm{
+        background: url(./images/contact-mobile.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: block;
+    }
+
+    .ContactUsForm .LeftSection{
+        /* backdrop-filter: blur(2px); */
+        width: 100%;
+        background: none;
+        align-items: flex-start;
+        padding-left: 20px;
+    }
+    .ContactUsForm .LeftSection p{
+        text-align: left;
+    }
+    .ContactUsForm .RightSection{
+        width: 100%;
+    }
+    .ContactUsForm .RightSection form{
+        margin-top: 80px;
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+    }
+    .ContactUsForm .RightSection form div label{
+        backdrop-filter: blur(5px);
+    }
+    .ContactUsForm .RightSection form button{
+        background-color: #00629B
+
+    }
+}

@@ -1,0 +1,140 @@
+/* communityDetails.css */
+
+.community-details {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  } */
+  
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    border: none;
+  }
+  
+  .product-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+    /* Styles for the main content */
+    .community-details {
+      margin-top: 50px; /* Add margin to separate the content from the Our Community section */
+    }
+
+    /* Styles for the card */
+    .card {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+    }
+
+    .product-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px; /* Optional: add border-radius to the product image */
+    }
+    .carousel-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow at the bottom */
+    }
+    
+    .blue-background {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow at the bottom */
+    }
+
+
+.community-section{
+  height: 100vh;
+  background: url(../views/images/communityDetails1.png), #ffa200cc;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 800px;
+  background-position: right center;
+  /* animation: HeaderBackgroundContactUs 1s ease-out forwards; */
+}
+
+.community-section .community-introduction{
+  height: 95%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* left: -800px; */
+  /* animation: HeaderText 1s ease-out forwards; */
+}
+
+.community-section .community-introduction .our-community{
+  width: 90%;
+  line-height: 100px;
+  font-size: 10rem;
+  color: #00629B;
+}
+
+.community-section .community-introduction .our-community span{
+  font-size: 6rem;
+  color: #ddd;
+}
+
+.community-section .community-introduction .best-community{
+}
+
+.community-section .community-introduction .paraa{
+  color: white;
+  font-size: .9rem;
+  width: 85%;
+}
+
+/* Blue #00629B */
+/* Orange #FFA300 */
+
+
+@media (max-width:1000px) {
+
+  .community-section{
+    background-position: bottom center;
+    background-size: 550px;
+    animation: none;
+
+  }
+  .community-section .community-introduction{
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 50px;
+    left: 0;
+    animation: none;
+  }
+
+  .community-section .community-introduction .our-community{
+    line-height: 50px;
+    font-size: 5rem;
+  }
+
+  .community-section .community-introduction .our-community span{
+    font-size: 3rem;
+  }
+
+  .community-section .community-introduction .paraa{
+
+  }
+}

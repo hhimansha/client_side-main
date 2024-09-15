@@ -1,0 +1,351 @@
+.Home{
+    font-size: 15px;
+}
+
+.Home .Header{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right center;
+    /* animation: HeaderBackground linear forwards;
+    animation-timeline: view( 0px 700px); */
+}
+
+/* @keyframes HeaderBackground {
+    from{
+        background-position: right top;
+    }
+    
+    to{
+        background-position: 1500px top;
+    }
+} */
+
+.Home .Header .LeftSection{
+    width: 50%;
+    margin-top: 10px;
+    padding-left: 80px;
+    position: relative;
+    /* left: -800px; */
+    /* animation: HeaderText linear forwards;
+    animation-timeline: view( 100px 600px); */
+}
+
+/* @keyframes HeaderText {
+    from{
+        left: 0px;
+    }
+    to{
+        left: -500px;
+    }
+} */
+
+.Home .Header .LeftSection h1{
+    font-size: 6.5rem;
+    line-height: 6.5rem;
+}
+.Home .Header .LeftSection p{
+    width: 100%;
+    margin: 20px 0;
+}
+.Home .Header .LeftSection p span{
+    color: #FFA300;
+}
+.Home .Header .LeftSection button{
+    width: 20%;
+    padding: 10px 0;
+    font-weight: 600;
+    background-color: #FFA300;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.526);
+}
+
+.Home .Header .LeftSection button:hover{
+    color: white;
+}
+
+.Home .Header .LeftSection button:active{
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.526);
+}
+
+.Home .Header .RightSection{
+    height: 100%;
+    width: 50%;
+
+}
+
+.Home .WhoWeAre {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+}
+
+.Home .WhoWeAre img{
+    position: relative;
+    /* animation: WhoWeAreImg linear forwards;
+    animation-timeline: view(650px 0px); */
+    width: 40vw;
+}
+
+/* @keyframes WhoWeAreImg {
+    from{
+        left: -500px;
+    }
+    to{
+        left: 0;
+    }
+} */
+
+.Home .WhoWeAre .whoAreWeText{
+    position: relative;
+    /* animation: WhoWeAreText linear forwards;
+    animation-timeline: view(520px 0px); */
+    width: 40vw;
+}
+
+/* @keyframes WhoWeAreText {
+    from{
+        right: -500px;
+    }
+    to{
+        right: 0;
+    }
+} */
+
+.Home .WhoWeAre .whoAreWeText h1{
+    color: #FFA300;
+    margin-bottom: 10px;
+    font-size: 4rem;
+}
+
+.Home .WhoWeAre .whoAreWeText p{
+    color: #00629B;
+}
+
+.Contact .BlurBackground{
+    background-color: #00629B;
+    height: 100vh;
+    display: flex;
+    color: white;
+}
+
+.Contact .BlurBackground .LeftSection{
+    background: url(./images/contact1re.png) ;
+    background-position: right center;
+    background-size: 1200px;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: flex-end;
+    /* border: red 1px solid; */
+}
+
+.Contact .BlurBackground .LeftSection h1{
+    margin-top: 50px;
+    font-size: 2.8rem;
+    letter-spacing: 5px;
+    color: #ffa200;
+}
+
+.Contact .BlurBackground .LeftSection p{
+    font-size: .8rem;
+    text-align: right;
+    width: 40%;
+}
+
+.Contact .BlurBackground .RightSection{
+    width: 50%;
+
+}
+
+.Contact .BlurBackground .RightSection form{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.Contact .BlurBackground .RightSection form div{
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.Contact .BlurBackground .RightSection form div label{
+    justify-self: self-start;
+    align-self: center;   
+}
+.Contact .BlurBackground .RightSection form div input{
+    outline: none;
+    border: #ffffff solid 3px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+.Contact .BlurBackground .RightSection form div textarea{
+    outline: none;
+    border: #ffffff solid 3px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+.Contact .BlurBackground .RightSection form div input:focus,
+.Contact .BlurBackground .RightSection form div textarea:focus{
+    border: #ffa200a4 solid 3px; 
+}
+.Contact .BlurBackground .RightSection form button{
+    width: 100px;
+    outline: none;
+    border: none;
+    padding: 10px 5px;
+    border-radius: 5px;
+    background-color: #ffa200;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:1000px) {
+    .Home .Header{
+        /* flex-direction: column; */
+        background-size: 550px;
+        background-position: right -70px top 400px;
+        align-items: flex-start;
+        animation: none;
+    }
+
+    .Home .Header .LeftSection{
+        margin-top: 35px;
+        padding-left: 25px;
+        width: 50%;
+        left: 0;
+        animation: none;
+    }
+
+    .Home .Header .LeftSection h1{
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+
+    .Home .Header .LeftSection p{
+        display: block;
+        line-height: 1.5rem;
+        width: 200%;
+    }
+
+    .Home .Header .LeftSection p span{
+        display: block;
+        line-height: .8rem;        
+        color: rgb(255, 255, 255);
+    }
+
+    .Home .Header .RightSection{
+        align-self: flex-end;
+        /* height: 100%;
+        width: 100%;
+        background: url(./images/HeroImage.png) no-repeat;
+        background-position:0px -0px;
+        background-size: 500px; */
+    }
+
+    .Home .Header .RightSection img{
+        /* display: none; */
+        width: 90vw;
+    }
+
+    .Home .Header .LeftSection button{
+        width: 50%;
+    }
+
+    .Home .WhoWeAre{
+        flex-direction: column;
+    }
+
+    .Home .WhoWeAre img{
+        width: 85vw;
+    }    
+
+    .Home .WhoWeAre .text{
+        width: 65vw;
+    }
+
+    .Home .WhoWeAre .text h1{
+        font-size: 2.5rem;
+    }
+
+    .Contact{
+        background: url(./images/contact1-mobile.jpg) , #00629B;
+        background-position: center center;
+        background-size: 1000px;
+        
+        background-repeat: no-repeat;
+        height: 90vh;
+    }
+    
+    .Contact .BlurBackground{
+        display: block;
+        background: none;
+        backdrop-filter: blur(2px);
+        height: 100%;
+    }
+
+    .Contact .BlurBackground .LeftSection{
+        width: 100%;
+        background: none;
+        align-items: flex-end;
+    }
+    .Contact .BlurBackground .LeftSection h1{
+        color: #ffa200;
+        font-size: 2.8rem;
+        letter-spacing: 2px;
+        text-align: right;
+    }
+    .Contact .BlurBackground .LeftSection p{
+        text-align: right;
+        width: 60%;
+        padding: 0 20px;
+    }
+    .Contact .BlurBackground .RightSection{
+        width: 100%;
+    }
+    .Contact .BlurBackground .RightSection form{
+        margin-top: 50px;
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+    }
+    .Contact .BlurBackground .RightSection form div label{
+        /* backdrop-filter: blur(5px); */
+    }
+}
+
+@media screen and (max-width:400px) {
+    .Home .Header .LeftSection h1{
+        font-size: 3rem;
+    }
+
+    .Contact .BlurBackground .RightSection form{
+        margin-top: 10px;
+    }
+    
+}

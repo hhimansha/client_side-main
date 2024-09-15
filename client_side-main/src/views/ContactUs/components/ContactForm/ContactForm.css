@@ -1,0 +1,83 @@
+/* Firstcomp.css */
+
+.first {
+  margin: auto;
+  border-radius: 25px;
+  padding: 15px 0;
+  width: 65%;
+  text-align: center;
+  background-color: rgb(240, 240, 240);
+  backdrop-filter: blur(5px);
+  box-shadow: rgba(131, 131, 131, 0.812) 5px 5px 5px;
+  color: #FFA300;
+}
+
+.first h2{
+  font-size: 2rem;
+}
+
+.first form{
+  margin-top: 15px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.first form div{
+  width: 40%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.first form div label{
+  justify-self: self-start;
+  align-self: center;
+}
+
+.first form div input, 
+.first form div textarea{
+  outline: none;
+  border: none;
+  padding: 10px 5px;
+  border-radius: 5px;
+  width: 100%;
+} 
+
+.first form button{
+  width: 100px;
+  outline: none;
+  border: none;
+  padding: 10px 5px;
+  border-radius: 5px;
+  background-color: #ffa200;
+  color: white;
+  font-weight: 600;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .first {
+    width: 90%;
+  }
+
+  .first h2 {
+    font-size: 1.5rem;
+  }
+
+  .first form div {
+    width: 95%;
+  }
+
+  .first form div label {
+    justify-self: left;
+    align-self: top;
+  }
+
+  .first form button {
+    width: 150px;
+  }
+}
