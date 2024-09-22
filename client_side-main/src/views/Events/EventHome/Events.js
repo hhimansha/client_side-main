@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./events.css";
 import wbk from "./img/bkw.png";
@@ -15,9 +14,49 @@ import news2 from "./img/news2.jpg";
 import news3 from "./img/news3.jpg";
 import news4 from "./img/news4.jpg";
 import video from "./img/Bvi.webm";
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
 import Footer from '../../Footer/Footer'
 
 function Events() {
+  const [data, setData] = useState([]);
+  const [currentDate, setCurrentDate] = useState(new Date().toISOString());
+  const upcomingRef = useRef(null); // Ref for upcoming events slider
+  const pastRef = useRef(null); // Ref for past events slider
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/get/events/IEEECS") // Common endpoint for all events
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+      });
+  }, []);
+
+  const upcomingEvents = data.filter(
+    (event) => new Date(event.date) > new Date(currentDate)
+  );
+  const pastEvents = data.filter(
+    (event) => new Date(event.date) <= new Date(currentDate)
+  );
+
+  const baseURL = "http://localhost:3001"; // Define your base URL
+  const getFullImageUrl = (imagePath) => {
+    return `${baseURL}/${imagePath.replace(/^\/+/, "")}`; // Remove leading slashes from the image path
+  };
+
+  const scrollLeft = (ref) => {
+    ref.current.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = (ref) => {
+    ref.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
   return (
     <div className="Eh-video-container">
       <video autoPlay loop muted className="Eh-video">
@@ -33,108 +72,103 @@ function Events() {
         </h1>
       </div>
 
-      {/*1st BOX*/}
-      <section className="body-box">
-        <div className="responsive-box">
-          <div className="bxcolumn">
-            <div class="containerslide">
-              <div class="wrapperslide">
-                <img src={news1} alt="img1" className="imgslider" />
-                <img src={news2} alt="img2" className="imgslider" />
-                <img src={news3} alt="img3" className="imgslider" />
-                <img src={news4} alt="img4" className="imgslider" />
+      {/* Upcoming Events Section */}
+      <section className="mt-12 mx-auto max-w-7xl px-4 sm:px-6  lg:px-8 relative  py-10">
+        <h2 className="text-2xl md:text-4xl font-semibold text-center">Upcoming Events</h2>
+
+        {/* Left Arrow */}
+        <button
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg p-4 rounded-full z-10 hidden md:block"
+          onClick={() => scrollLeft(upcomingRef)}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} className="text-blue-600" />
+        </button>
+
+        {/* Slider */}
+        <div className="mt-8 overflow-x-auto flex  space-x-8" ref={upcomingRef}>
+          {upcomingEvents.map((event, index) => (
+            <div key={index} className="border-yellow-500 shadow-lg rounded-lg overflow-hidden group flex-none w-80 ">
+              <div className="relative h-96 w-full overflow-hidden">
+                <img
+                  src={getFullImageUrl(event.image)} // Construct full image URL
+                  alt={event.name}
+                  className="h-full w-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="p-6 ">
+                <h3 className="text-lg md:text-xl text-center font-bold">{event.name}</h3>
+                <p className="text-gray-600 mt-2">{event.description}</p>
+                <p className="mt-4 text-blue-600">
+                  {new Date(event.date).toLocaleDateString()}
+                </p>
+
+                {/* Conditionally render Apply Now button based on linkStatus */}
+                {event.linkStatus && (
+                  <div className="mt-6 flex justify-center">
+                    <a
+                      href={event.googleFormLink}
+                      className="inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white py-3 px-10 rounded-full font-semibold shadow-md hover:shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300"
+                      style={{ minWidth: "200px", textAlign: "center" }}
+                    >
+                      Apply Now
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-          <div className="bxcolumn">
-            <div className="bxcolumnfulnews">
-              <h1 className="clmtopic">NEWS</h1>
-              <br></br>
-              <p className="clmparanws">
-                SLIIT team emerged victorious in the INFOTEL Exhibition’s
-                Capture the Flag (CTF) hackathon, clinching the coveted 1st
-                place. Their impressive performance earned them a generous cash
-                prize and a substantial 3 million rupees worth of Cloud Credits.
-                SLIIT team emerged victorious in the INFOTEL Exhibition’s
-                Capture the Flag (CTF) hackathon, clinching the coveted 1st
-                place. Their impressive performance earned them a generous cash
-                prize and a substantial 3 million rupees worth of Cloud Credits.
-                The competition was organized byOrel IT3 million rupees worth of
-                Cloud Credits. The competition was organized byOrel IT
-              </p>
-              <br></br>
-              <div className="clmbtnful">
-                <Link to="/user/news">
-                  <button className="clmbtn" onClick={() => {window.scrollTo(0, 0)}}>View More</button>
-                </Link>
-              </div>
-              <br></br>
-              <br></br>
-            </div>
-          </div>
+          ))}
         </div>
-        <br></br> <br></br> <br></br> <br></br>
-        {/*2nd box set */}
-        <div className="boxs-container">
-          <div className="box1nw">
-            <br></br>
-            <div className="bxcolumnful">
-              <div class="containerslide2">
-                <div class="wrapperslide2">
-                  <img src={event1} alt="img1" className="imgslider2" />
-                  <img src={event2} alt="img2" className="imgslider2" />
-                  <img src={event3} alt="img3" className="imgslider2" />
-                  <img src={event4} alt="img4" className="imgslider2" />
-                </div>
+
+        {/* Right Arrow */}
+        <button
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg p-4 rounded-full z-10 hidden md:block"
+          onClick={() => scrollRight(upcomingRef)}
+        >
+          <FontAwesomeIcon icon={faArrowRight} className="text-blue-600" />
+        </button>
+      </section>
+
+      {/* Past Events Section */}
+      <section className="mt-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 relative py-10">
+        <h2 className="text-2xl md:text-4xl font-semibold text-center">Past Events</h2>
+
+        {/* Left Arrow */}
+        <button
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg p-4 rounded-full z-10 hidden md:block"
+          onClick={() => scrollLeft(pastRef)}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} className="text-blue-600" />
+        </button>
+
+        {/* Slider */}
+        <div className="mt-8 overflow-x-auto flex space-x-8" ref={pastRef}>
+          {pastEvents.map((event, index) => (
+            <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden group flex-none w-80">
+              <div className="relative h-96 w-full overflow-hidden">
+                <img
+                  src={getFullImageUrl(event.image)}
+                  alt={event.name}
+                  className="h-full w-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
-              <h1 className="clmtopic">Past Events</h1>
-              <br></br>
-              <p className="clmpara">
-                CyberShield 2.0 is an event centred around the concepts of cyber
-                security held successfully for all faculty members are
-                encouraged to attend, it is anticipated that the faculty of
-                computing students participated to this even
-              </p>
-              <br></br>
-              <div className="clmbtnful">
-                <Link to="/user/pastevents">
-                  <button className="clmbtn" onClick={() => {window.scrollTo(0, 0)}}>View More</button>
-                </Link>
+              <div className="p-6">
+                <h3 className="text-lg md:text-xl text-center font-bold">{event.name}</h3>
+                <p className="text-gray-600 mt-2">{event.description}</p>
+                <p className="mt-4 text-blue-600">
+                  {new Date(event.date).toLocaleDateString()}
+                </p>
               </div>
-              <br></br>
-              <br></br>
             </div>
-          </div>
-          <div className="box2nw">
-            <br></br>
-            <div className="bxcolumnful">
-              <div class="containerslide2">
-                <div class="wrapperslide2">
-                  <img src={event5} alt="img1" className="imgslider2" />
-                  <img src={event6} alt="img2" className="imgslider2" />
-                  <img src={event7} alt="img3" className="imgslider2" />
-                  <img src={event8} alt="img4" className="imgslider2" />
-                </div>
-              </div>
-              <h1 className="clmtopic">Upcoming Events</h1>
-              <br></br>
-              <p className="clmpara">
-                CyberShield 2.0 is an event centred around the concepts of cyber
-                security held successfully for all faculty members are
-                encouraged to attend, it is anticipated that the faculty of
-                computing students participated to this even
-              </p>
-              <br></br>
-              <div className="clmbtnful">
-                <Link to="/user/upevents">
-                  <button className="clmbtn" onClick={() => {window.scrollTo(0, 0)}}>View More</button>
-                </Link>
-              </div>
-              <br></br>
-              <br></br>
-            </div>
-          </div>
+          ))}
         </div>
+
+        {/* Right Arrow */}
+        <button
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg p-4 rounded-full z-10 hidden md:block"
+          onClick={() => scrollRight(pastRef)}
+        >
+          <FontAwesomeIcon icon={faArrowRight} className="text-blue-600" />
+        </button>
       </section>
       <Footer />
     </div>

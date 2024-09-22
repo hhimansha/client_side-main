@@ -1,24 +1,41 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import "./news.css";
-import wbk from "./img/bkw.png";
-import event1 from "./img/event1.jpg";
-import event2 from "./img/event2.jpg";
-import event3 from "./img/event3.jpg";
-import event4 from "./img/event4.jpg";
-import event5 from "./img/event5.jpg";
-import event6 from "./img/event6.jpg";
-import event7 from "./img/event7.jpg";
-import event8 from "./img/event8.jpg";
-import news1 from "./img/news1.jpg";
-import news2 from "./img/news2.jpg";
-import news3 from "./img/news3.jpg";
-import news4 from "./img/news4.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import video from "./img/Bvinews.webm";
 import Footer from "../../Footer/Footer";
 
-function News() {
+export const News = () => {
+  const [data, setData] = useState([]);
+  const baseURL = "http://localhost:3001"; // Define your base URL
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/getAllEvents") // Common endpoint for all events
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+      });
+  }, []);
+
+  const getFullImageUrl = (imagePath) => {
+    return `${baseURL}/${imagePath.replace(/^\/+/, "")}`; // Remove leading slashes from the image path
+  };
+
+  const scrollLeft = (ref) => {
+    ref.current.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = (ref) => {
+    ref.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
+
   return (
-    <div>
+    <div className="bg-white">
+      {/* Hero Section */}
       <div className="Eh-video-container-news">
         <video autoPlay loop muted className="Eh-video-news">
           <source src={video} type="video/mp4" />
@@ -30,116 +47,47 @@ function News() {
           <h1 className="Eh-topic-news">IEEE HOT NEWS</h1>
         </div>
       </div>
-      <section className="body-box">
-        <div className="boxs-container">
-          {/*News Box Start */}
-          <div className="box1nw">
-            <br></br>
-            <div className="bxcolumnful">
-              <div class="containerslide2">
-                <div class="wrapperslide2">
-                  <img src={event1} alt="img1" className="imgslider2" />
-                  <img src={event2} alt="img2" className="imgslider2" />
-                  <img src={event3} alt="img3" className="imgslider2" />
-                  <img src={event4} alt="img4" className="imgslider2" />
-                </div>
+
+      {/* All Events Section */}
+      <section className="mt-12 mx-auto max-w-7xl px-4 sm:px-6 bg-white lg:px-8 my-10 py-10">
+        {/* <h2 className="text-2xl md:text-4xl font-semibold text-center">All Events</h2> */}
+
+        <div className="mt-8 overflow-x-auto flex space-x-8">
+          {data.map((event, index) => (
+            <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden group flex-none w-80">
+              <div className="relative h-96 w-full overflow-hidden">
+                <img
+                  src={getFullImageUrl(event.image)} // Construct full image URL
+                  alt={event.name}
+                  className="h-full w-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
-              <h1 className="clmtopic">News Heading</h1>
-              <br></br>
-              <p className="clmpara">
-                CyberShield 2.0 is an event centred around the concepts of cyber
-                security held successfully for all faculty members are
-                encouraged to attend, it is anticipated that the faculty of
-                computing students participated to this even
-              </p>
-              <br></br>
-              <br></br>
-            </div>
-          </div>
-          {/*News Box END */}
-          {/*News Box Start */}
-          <div className="box2nw">
-            <br></br>
-            <div className="bxcolumnful">
-              <div class="containerslide2">
-                <div class="wrapperslide2">
-                  <img src={event5} alt="img1" className="imgslider2" />
-                  <img src={event6} alt="img2" className="imgslider2" />
-                  <img src={event7} alt="img3" className="imgslider2" />
-                  <img src={event8} alt="img4" className="imgslider2" />
-                </div>
+              <div className="p-6">
+                <h3 className="text-lg md:text-xl text-center font-bold">{event.name}</h3>
+                <p className="text-gray-600 mt-2">{event.description}</p>
+                <p className="mt-4 text-blue-600">
+                  {new Date(event.date).toLocaleDateString()}
+                </p>
+
+                {/* Conditionally render Apply Now button based on linkStatus */}
+                {event.linkStatus && (
+                  <div className="mt-6 flex justify-center">
+                    <a
+                      href={event.googleFormLink}
+                      className="inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white py-3 px-10 rounded-full font-semibold shadow-md hover:shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300"
+                      style={{ minWidth: "200px", textAlign: "center" }}
+                    >
+                      Apply Now
+                    </a>
+                  </div>
+                )}
               </div>
-              <h1 className="clmtopic">News Heading</h1>
-              <br></br>
-              <p className="clmpara">
-                CyberShield 2.0 is an event centred around the concepts of cyber
-                security held successfully for all faculty members are
-                encouraged to attend, it is anticipated that the faculty of
-                computing students participated to this even
-              </p>
-              <br></br>
-              <br></br>
             </div>
-          </div>
-          {/*News Box Start */}
-        </div>
-        <br></br> <br></br> <br></br>
-        <div className="boxs-container">
-          {/*News Box Start */}
-          <div className="box1nw">
-            <br></br>
-            <div className="bxcolumnful">
-              <div class="containerslide2">
-                <div class="wrapperslide2">
-                  <img src={event1} alt="img1" className="imgslider2" />
-                  <img src={event2} alt="img2" className="imgslider2" />
-                  <img src={event3} alt="img3" className="imgslider2" />
-                  <img src={event4} alt="img4" className="imgslider2" />
-                </div>
-              </div>
-              <h1 className="clmtopic">News Heading</h1>
-              <br></br>
-              <p className="clmpara">
-                CyberShield 2.0 is an event centred around the concepts of cyber
-                security held successfully for all faculty members are
-                encouraged to attend, it is anticipated that the faculty of
-                computing students participated to this even
-              </p>
-              <br></br>
-              <br></br>
-            </div>
-          </div>
-          {/*News Box END */}
-          {/*News Box Start */}
-          <div className="box2nw">
-            <br></br>
-            <div className="bxcolumnful">
-              <div class="containerslide2">
-                <div class="wrapperslide2">
-                  <img src={event5} alt="img1" className="imgslider2" />
-                  <img src={event6} alt="img2" className="imgslider2" />
-                  <img src={event7} alt="img3" className="imgslider2" />
-                  <img src={event8} alt="img4" className="imgslider2" />
-                </div>
-              </div>
-              <h1 className="clmtopic">News Heading</h1>
-              <br></br>
-              <p className="clmpara">
-                CyberShield 2.0 is an event centred around the concepts of cyber
-                security held successfully for all faculty members are
-                encouraged to attend, it is anticipated that the faculty of
-                computing students participated to this even
-              </p>
-              <br></br>
-              <br></br>
-            </div>
-          </div>
-          {/*News Box END */}
+          ))}
         </div>
       </section>
-      <Footer />
     </div>
   );
-}
+};
 
 export default News;
